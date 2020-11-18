@@ -3,10 +3,10 @@ const bodyParser = require('body-parser')
 const app =express()
 const mysql=require('mysql')
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'my$077nethmi',
-    database: 'file-upload'
+    host: 'us-cdbr-east-02.cleardb.com',
+    user: 'bdd779232475d2',
+    password: '1b102457',
+    database: 'heroku_facc63e981ca242'
   })
 
 app.use(bodyParser.json());
@@ -25,6 +25,18 @@ app.get('/',(req,res)=>{
         }
     })
 
+})
+
+app.get('/all',(req,res)=>{
+    let stmt ="SELECT * FROM user"
+    connection.query(stmt,(err,result)=>{
+        if(err){
+            res.json(err)
+        }
+        else{
+            res.json(result)
+        }
+    })
 })
 const PORT=process.env.PORT || 5000
 app.listen(PORT,()=>{
