@@ -14,30 +14,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 connection.connect()
 app.get('/',(req,res)=>{
-    // let stmt = `INSERT INTO user(username,password)
-    //         VALUES(?,?)`
-    // connection.query(stmt,[req.body.username,req.body.password],(err,result)=>{
-    //     if(err){
-    //         res.json(err)
-    //     }
-    //     else{
-    //         res.json(result)
-    //     }
-    // })
-    res.json({"success":true})
+    let stmt = `INSERT INTO user(username,password)
+            VALUES(?,?)`
+    connection.query(stmt,[req.body.username,req.body.password],(err,result)=>{
+        if(err){
+            res.json(err)
+        }
+        else{
+            res.json(result)
+        }
+    })
 
 })
 
 app.get('/all',(req,res)=>{
-    // let stmt ="SELECT * FROM user"
-    // connection.query(stmt,(err,result)=>{
-    //     if(err){
-    //         res.json(err)
-    //     }
-    //     else{
-    //         res.json(result)
-    //     }
-    // })
+    let stmt ="SELECT * FROM user"
+    connection.query(stmt,(err,result)=>{
+        if(err){
+            res.json(err)
+        }
+        else{
+            res.json(result)
+        }
+    })
 })
 const PORT=process.env.PORT || 5000
 app.listen(PORT,()=>{
