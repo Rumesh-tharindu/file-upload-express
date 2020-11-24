@@ -12,7 +12,9 @@ var connection = mysql.createConnection({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-connection.connect()
+connection.connect((err)=>{
+    
+})
 app.get('/',(req,res)=>{
     let stmt = `INSERT INTO user(username,password)
             VALUES(?,?)`
@@ -40,5 +42,5 @@ app.get('/all',(req,res)=>{
 })
 const PORT=process.env.PORT || 5000
 app.listen(PORT,()=>{
-    console.log("Listening")
+    console.log("Listening here")
 })
